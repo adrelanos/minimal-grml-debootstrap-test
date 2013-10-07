@@ -15,7 +15,8 @@ if [ ! "$ROOT_CHECK" = "0" ]; then
    fi
 fi
 
-sudo apt-get install grml-debootstrap
+apt-get update
+apt-get install grml-debootstrap
 
 create_img() {
    sudo -u "$USERNAME" mkdir -p "/home/$USERNAME/grml-debootstraptestbin"
