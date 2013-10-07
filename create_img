@@ -18,7 +18,7 @@ fi
 sudo apt-get install grml-debootstrap
 
 create_img() {
-   sudo -u "$USERNAME" mkdir -p /home/user/grml-debootstraptestbin
+   sudo -u "$USERNAME" mkdir -p "/home/$USERNAME/grml-debootstraptestbin"
 
    grml-debootstrap \
       --arch i386 \
