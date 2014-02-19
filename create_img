@@ -16,7 +16,7 @@ apt-get install grml-debootstrap
 
 grml-debootstrap \
    --mirror ftp://ftp.de.debian.org/debian \
-   --arch amd64 \
+   --arch i386 \
    --filesystem ext4 \
    --force \
    --hostname host \
