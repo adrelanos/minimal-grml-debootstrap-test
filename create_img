@@ -2,13 +2,9 @@
 
 set -x
 
-VMNAME=test
-USERNAME="$(logname)"
-VMSIZE=2G
-
 if [ ! "$ROOT_CHECK" = "0" ]; then
    if [ "$(id -u)" != "0" ]; then
-       echo "${red}${bold}ERROR: This must be run as root (sudo)!${reset}"
+       true "ERROR: This must be run as root (sudo)!${reset}"
        exit 1
    else
        true "INFO: Script running as root."
@@ -18,23 +14,18 @@ fi
 apt-get update
 apt-get install grml-debootstrap
 
-create_img() {
-   sudo -u "$USERNAME" mkdir -p "/home/$USERNAME/grml-debootstraptestbin"
-
-   grml-debootstrap \
-      --arch i386 \
-      --filesystem ext4 \
-      --force \
-      --hostname host \
-      --keep_src_list \
-      --password changeme \
-      --release wheezy \
-      --verbose \
-      --vmfile \
-      --vmsize "$VMSIZE" \
-      --config "./grml_config" \
-      --packages "./$VMNAME_packages" \
-      --target "/home/$USERNAME/grml-debootstraptestbin/$VMNAME.img"
-}
-
-create_img
+grml-debootstrap \
+   --mirror ftp://ftp.de.debian.org/debian \
+   --arch amd64 \
+   --filesystem ext4 \
+   --force \
+   --hostname host \
+   --keep_src_list \
+   --password changeme \
+   --release wheezy \
+   --verbose \
+   --vmfile \
+   --vmsize 100G \
+   --config /etc/debootstrap/config \
+   --packages /etc/debootstrap/packages \
+   --target ./image
