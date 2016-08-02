@@ -1,2 +1,6 @@
-#
+sudo: required
+dist: trusty
+before_script:
+# debootstrap in trusty is old...
+ - sudo ln -s sid /usr/share/debootstrap/scripts/stretch
 script: sudo -E ./create_img
