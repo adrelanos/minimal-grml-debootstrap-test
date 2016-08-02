@@ -1,6 +1,8 @@
 sudo: required
 dist: trusty
 before_script:
+ - sudo apt-get -qq update
+ - sudo apt-get install -y grml-debootstrap
 # debootstrap in trusty is old...
  - sudo ln -s sid /usr/share/debootstrap/scripts/stretch
 script: sudo -E ./create_img
